@@ -1,17 +1,7 @@
 <template>
-    <view>
-        <uni-card
-            @click=""
-        >
-            滑动广告区
-        </uni-card>
-    </view>
+  <uni-card @click=""> 滑动广告区 </uni-card>
 </template>
 
-<script lang="ts" setup>
+<script lang="ts" setup></script>
 
-</script>
-
-<style>
-
-</style>
+<style></style>

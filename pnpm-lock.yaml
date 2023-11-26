@@ -47,6 +47,9 @@ dependencies:
   '@dcloudio/uni-ui':
     specifier: ^1.4.28
     version: 1.4.28
+  oh-vue-icons:
+    specifier: 1.0.0-rc3
+    version: 1.0.0-rc3(vue@3.3.8)
   pinia:
     specifier: 2.0.36
     version: 2.0.36(typescript@4.9.4)(vue@3.3.8)
@@ -5761,6 +5764,19 @@ packages:
     resolution: {integrity: sha512-5qoj1RUiKOMsCCNLV1CBiPYE10sziTsnmNxkAI/rZhiD63CF7IqdFGC/XzjWjpSgLf0LxXX3bDFIh0E18f6UhQ==}
     dev: true
 
+  /oh-vue-icons@1.0.0-rc3(vue@3.3.8):
+    resolution: {integrity: sha512-+k2YC6piK7sEZnwbkQF3UokFPMmgqpiLP6f/H0ovQFLl20QA5V4U8EcI6EclD2Lt5NMQ3k6ilLGo8XyXqdVSvg==, tarball: https://registry.npmmirror.com/oh-vue-icons/-/oh-vue-icons-1.0.0-rc3.tgz}
+    peerDependencies:
+      '@vue/composition-api': ^1.0.0-rc.1
+      vue: ^2.0.0 || >=3.0.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+    dependencies:
+      vue: 3.3.8(typescript@4.9.4)
+      vue-demi: 0.12.5(vue@3.3.8)
+    dev: false
+
   /omggif@1.0.10:
     resolution: {integrity: sha512-LMJTtvgc/nugXj0Vcrrs68Mn2D1r0zf630VNtqtpI1FEO7e+O9FP4gqs9AcnBaSEeoHIPm28u6qgPR0oyEpGSw==}
     dev: false
@@ -6904,6 +6920,21 @@ packages:
       terser: 5.24.0
     optionalDependencies:
       fsevents: 2.3.3
+
+  /vue-demi@0.12.5(vue@3.3.8):
+    resolution: {integrity: sha512-BREuTgTYlUr0zw0EZn3hnhC3I6gPWv+Kwh4MCih6QcAeaTlaIX0DwOVN0wHej7hSvDPecz4jygy/idsgKfW58Q==, tarball: https://registry.npmmirror.com/vue-demi/-/vue-demi-0.12.5.tgz}
+    engines: {node: '>=12'}
+    hasBin: true
+    requiresBuild: true
+    peerDependencies:
+      '@vue/composition-api': ^1.0.0-rc.1
+      vue: ^3.0.0-0 || ^2.6.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+    dependencies:
+      vue: 3.3.8(typescript@4.9.4)
+    dev: false
 
   /vue-demi@0.14.6(vue@3.3.8):
     resolution: {integrity: sha512-8QA7wrYSHKaYgUxDA5ZC24w+eHm3sYCbp0EzcDwKqN3p6HqtTCGR/GVsPyZW92unff4UlcSh++lmqDWN3ZIq4w==, tarball: https://registry.npmmirror.com/vue-demi/-/vue-demi-0.14.6.tgz}

@@ -1,6 +1,3 @@
-export type I18NMessage = {
-    app: {
-        title: string
-        desc: string
-    }
-}
+import CN from "@/locale/lang/cn";
+
+export type I18NMessage = typeof CN;
