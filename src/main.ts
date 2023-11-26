@@ -3,6 +3,7 @@ import App from "./App.vue";
 import pinia from "./stores";
 import i18n from "./locales"
 import './styles/style.css'
+import './styles/tailwind.css'
 
 export function createApp() {
   const app = createSSRApp(App);
