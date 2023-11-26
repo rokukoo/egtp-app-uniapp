@@ -5,20 +5,19 @@ import { ref } from 'vue'
 export const useUserStore = defineStore(
     'user',
     () => {
-        // 会员信息
+        // 用户信息
         const profile = ref<any>()
 
-        // 保存会员信息，登录时使用
+        // 保存用户信息，登录时使用
         const setProfile = (value: any) => {
             profile.value = value
         }
 
-        // 清理会员信息，退出时使用
+        // 清理用户信息，退出时使用
         const clearProfile = () => {
             profile.value = undefined
         }
 
-        // 记得 return
         return {
             profile,
             setProfile,
@@ -30,10 +29,10 @@ export const useUserStore = defineStore(
         persist: {
             // 调整为兼容多端的API
             storage: {
-                setItem(key, value) {
+                setItem(key: string, value: string) {
                     uni.setStorageSync(key, value)
                 },
-                getItem(key) {
+                getItem(key: string) {
                     return uni.getStorageSync(key)
                 },
             },
