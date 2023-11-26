@@ -1,7 +1,9 @@
 <template>
-  <uni-card @click=""> 滑动广告区 </uni-card>
+  <egtp-swiper class="mx-3 rounded" />
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import EgtpSwiper from "@/components/egtp-swiper.vue";
+</script>
 
 <style></style>

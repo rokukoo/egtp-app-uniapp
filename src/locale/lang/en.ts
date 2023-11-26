@@ -15,6 +15,12 @@ const message: I18NMessage = {
     message: "Message",
     info: "Info",
   },
+  menu: {
+    exhibition: "Exhibition",
+    request: "Request",
+    news: "News",
+    logistics: "Logistics",
+  },
 };
 
 export default message;
