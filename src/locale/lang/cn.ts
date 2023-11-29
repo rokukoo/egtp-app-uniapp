@@ -13,11 +13,23 @@ const message = {
     message: "消息",
     info: "个人中心",
   },
-  menu: {
-    exhibition: "展会信息",
-    request: "需求发现",
-    news: "新闻探索",
-    logistics: "物流查询",
+  index: {
+    menu: {
+      exhibition: "展会信息",
+      request: "需求发现",
+      news: "新闻探索",
+      logistics: "物流查询",
+    },
+    timeZone: {
+      title: "时区信息",
+      action1: "切换",
+      action2: "刷新",
+    },
+    exchangeRate: {
+      title: "实时汇率",
+      action1: "切换",
+      action2: "刷新",
+    },
   },
 };
 

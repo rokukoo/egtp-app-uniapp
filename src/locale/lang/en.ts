@@ -15,11 +15,23 @@ const message: I18NMessage = {
     message: "Message",
     info: "Info",
   },
-  menu: {
-    exhibition: "Exhibition",
-    request: "Request",
-    news: "News",
-    logistics: "Logistics",
+  index: {
+    menu: {
+      exhibition: "Exhibition",
+      request: "Request",
+      news: "News",
+      logistics: "Logistics",
+    },
+    timeZone: {
+      title: "TimeZone",
+      action1: "Ch",
+      action2: "Re",
+    },
+    exchangeRate: {
+      title: "Exchange Rate",
+      action1: "Ch",
+      action2: "Re",
+    },
   },
 };
 
