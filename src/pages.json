@@ -27,7 +27,11 @@
       }
     },
     {
-      "path": "pages/logistics/logistics"
+      "path": "pages/logistics/logistics",
+      "style": {
+        "navigationBarTitleText": "物流查询",
+        "navigationBarBackgroundColor": "#3b3187"
+      }
     },
     {
       "path": "pages/message/message",

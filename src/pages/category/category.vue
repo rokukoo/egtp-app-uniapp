@@ -179,12 +179,12 @@ page {
       color: #999;
     }
   }
-  .more {
-    &::after {
-      font-family: "erabbit" !important;
-      content: "\e6c2";
-    }
-  }
+  // .more {
+  //   &::after {
+  //     font-family: "erabbit" !important;
+  //     content: "\e6c2";
+  //   }
+  // }
   .section {
     width: 100%;
     display: flex;

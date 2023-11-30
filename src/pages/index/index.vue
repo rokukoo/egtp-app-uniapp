@@ -64,7 +64,10 @@ const state = reactive({
         <!-- 商品推荐区 -->
         <view class="px-3">
           <nut-tabs v-model="state.tabValue">
-            <nut-tab-pane title="热卖商品">
+            <nut-tab-pane
+              title="热卖商品"
+              :custom-style="{ background: '#f6f6f6', padding: '10px 0' }"
+            >
               <product-card />
             </nut-tab-pane>
             <nut-tab-pane title="推荐商家">
