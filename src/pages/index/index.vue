@@ -1,75 +1,80 @@
 <script setup lang="ts">
 import CustomNavBar from "./components/custom-nav-bar.vue";
-import Banner from "./components/banner.vue";
 import MenuPanel from "./components/menu-panel.vue";
 import ProductCard from "./components/product-card.vue";
 import { useI18n } from "vue-i18n";
+import { getHomeBannerApi } from "@/services/home";
+import { onLoad } from "@dcloudio/uni-app";
+import type { BannerItem } from "@/types/home";
+import { ref, reactive } from "vue";
+import TimeZonePanel from "./components/time-zone-panel.vue";
+import ExchangeRatePanel from "./components/exchange-rate-panel.vue";
+import EgtpStore from "./components/egtp-store.vue";
 
 const { t } = useI18n();
+
+// 获取屏幕边界到安全区域距离
+const { safeAreaInsets } = uni.getSystemInfoSync();
+
+const getHomeBannerData = async () => {
+  const res = await getHomeBannerApi();
+  console.log(res);
+  bannerList.value = res.result;
+};
+
+const bannerList = ref<BannerItem[]>([]);
+
+onLoad(() => {
+  getHomeBannerData();
+});
+
+const state = reactive({
+  tabValue: "0",
+});
 </script>
 
 <style lang="scss"></style>
 
 <template>
-  <view class="">
+  <view>
+    <!-- 顶部导航栏 -->
     <custom-nav-bar />
-    <!-- 模拟 blend 效果 -->
-    <view class="h-28 bg-primary" />
-    <view
-      class="absolute w-full h-24 bg-gradient-to-b from-primary to-pink-white"
-    />
-    <banner />
-    <menu-panel />
-    <view class="flex">
-      <uni-card :title="t('index.timeZone.title')" @click="" class="">
-        <template v-slot:extra>
-          <text class="text-gray-500 text-xs">{{
-            t("index.timeZone.action1")
-          }}</text>
-          <text class="text-gray-300 text-xs">丨</text>
-          <text class="text-gray-500 text-xs">{{
-            t("index.timeZone.action2")
-          }}</text>
-        </template>
-        <view class="flex items-center justify-between">
-          <view class="flex flex-col items-center">
-            <text class="text-lg font-bold">15:55</text>
-            <text>塔吉克斯坦</text>
-          </view>
-          <view class="flex flex-col items-center">
-            <text class="text-lg font-bold">18:55</text>
-            <text>中国</text>
+    <!-- 首页内容区 -->
+    <scroll-view scroll-y>
+      <view class="space-y-3">
+        <!-- Banner区域 -->
+        <view class="relative">
+          <!-- 模拟 blend 效果 -->
+          <view
+            class="absolute h-1/2 w-full bg-gradient-to-b from-primary to-pink-100"
+          />
+          <view class="px-3">
+            <egtp-swiper :list="bannerList" />
           </view>
         </view>
-      </uni-card>
-      <uni-card
-        :title="t('index.exchangeRate.title')"
-        @click=""
-        class="bg-gradient-to-b from-blue-50 to-slate-100"
-      >
-        <template v-slot:extra>
-          <text class="text-gray-500 text-xs">{{
-            t("index.exchangeRate.action1")
-          }}</text>
-          <text class="text-gray-300 text-xs">丨</text>
-          <text class="text-gray-500 text-xs">{{
-            t("index.exchangeRate.action2")
-          }}</text>
-        </template>
-        <view class="h-full flex flex-col justify-between">
-          <view class="flex w-full justify-between">
-            <text>1.00 USD</text>
-            <text> = </text>
-            <text>7.05 RMB</text>
-          </view>
-          <view class="flex w-full justify-between">
-            <text>1.00 USD</text>
-            <text> = </text>
-            <text>10.97 TJK</text>
-          </view>
+        <!-- 菜单区域 -->
+        <view class="px-3">
+          <menu-panel />
         </view>
-      </uni-card>
-    </view>
-    <product-card />
+        <!-- 功能交互区 -->
+        <view class="px-3 flex justify-between gap-2 h-40">
+          <time-zone-panel class="h-full flex-1" />
+          <exchange-rate-panel class="h-full flex-1" />
+        </view>
+        <!-- 商品推荐区 -->
+        <view class="px-3">
+          <nut-tabs v-model="state.tabValue">
+            <nut-tab-pane title="热卖商品">
+              <product-card />
+            </nut-tab-pane>
+            <nut-tab-pane title="推荐商家">
+              <egtp-store />
+            </nut-tab-pane>
+          </nut-tabs>
+        </view>
+      </view>
+    </scroll-view>
   </view>
 </template>
+
+<style></style>

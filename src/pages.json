@@ -5,35 +5,52 @@
       // uni-ui 规则如下配置
       "^uni-(.*)": "@dcloudio/uni-ui/lib/uni-$1/uni-$1.vue",
       // 以 egtp 开头的组件，在 components 目录中查找
-      "^egtp-(.*)": "@/components/egtp-$1.vue"
+      "^egtp-(.*)": "@/components/egtp-$1.vue",
+      // unt-ui
+      "^nut-(.*)?-(.*)": "nutui-uniapp/components/$1$2/$1$2.vue",
+      "^nut-(.*)": "nutui-uniapp/components/$1/$1.vue"
     }
   },
   "pages": [
     //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
     {
-      "path": "pages/index/index"
+      "path": "pages/index/index",
+      "style": {
+        "navigationStyle": "custom"
+      }
     },
     {
-      "path": "pages/category/category"
+      "path": "pages/category/category",
+      "style": {
+        "navigationBarTitleText": "商品目录",
+        "navigationBarBackgroundColor": "#3b3187"
+      }
     },
     {
       "path": "pages/logistics/logistics"
     },
     {
-      "path": "pages/message/message"
+      "path": "pages/message/message",
+      "style": {
+        "navigationBarTitleText": "消息列表",
+        "navigationBarBackgroundColor": "#3b3187"
+      }
     },
     {
-      "path": "pages/info/info"
+      "path": "pages/info/info",
+      "style": {
+        "navigationStyle": "custom"
+      }
     },
     {
       "path": "pages/search/search",
       "style": {
-        "navigationBarTitleText": "search"
+        "navigationStyle": "custom"
       }
     }
   ],
   "globalStyle": {
-    "navigationStyle": "custom",
+    // "navigationStyle": "custom",
     "navigationBarBackgroundColor": "#F8F8F8",
     "backgroundColor": "#F8F8F8"
   },

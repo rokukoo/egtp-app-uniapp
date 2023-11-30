@@ -1,0 +1,36 @@
+<template>
+  <view class="category w-full">
+    <uni-search-bar
+      v-model="searchText"
+      :placeholder="'请输入商品名称'"
+      @confirm=""
+      bgColor="#EEEEEE"
+      clearButton="auto"
+      cancelButton="none"
+    />
+    <view>
+      <!-- 一级目录 -->
+      <nut-tabs v-model="value" title-scroll direction="vertical">
+        <nut-tab-pane
+          v-for="item in list"
+          :pane-key="item"
+          :title="'Tab ' + item"
+        >
+          Tab {{ item }}
+        </nut-tab-pane>
+      </nut-tabs>
+
+      <!-- 二级目录 -->
+      <scroll-view scroll-y> </scroll-view>
+    </view>
+  </view>
+</template>
+
+<script lang="ts" setup>
+import { ref } from "vue";
+
+const value = ref("0");
+const list = new Array(2).fill(0).map((_, index) => index);
+
+const searchText = ref<string>("");
+</script>

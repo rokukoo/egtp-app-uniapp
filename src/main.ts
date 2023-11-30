@@ -4,6 +4,7 @@ import pinia from "./stores";
 import i18n from "./locale";
 import "./styles/style.css";
 import "./styles/tailwind.css";
+import "./scss/uni-ui.reset.scss";
 
 /* import the fontawesome core */
 import { library } from "@fortawesome/fontawesome-svg-core";

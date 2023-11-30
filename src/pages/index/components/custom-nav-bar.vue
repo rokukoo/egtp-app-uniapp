@@ -3,29 +3,24 @@ import { useI18n } from "vue-i18n";
 
 const { t } = useI18n();
 
+function changeLocale() {
+  console.log("changeLocale!");
+}
+
 function navigateToSearchPage() {
   uni.navigateTo({ url: "/pages/search/search" });
 }
 
-function changeLocale() {
-  console.log("changeLocale!");
-}
+// 获取屏幕边界到安全区域距离
+const { safeAreaInsets } = uni.getSystemInfoSync();
 </script>
 
-<style lang="scss">
-// @import "@/scss/index.scss";
-
-// .nav-bar {
-//   background-color: $primary-color;
-// }
-</style>
+<style lang="scss"></style>
 
 <template>
-  <!-- <view
-    class="nav-bar bg-gradient-to-b from-primary to-purple-900 px-2 pt-4 pb-1 space-y-2"
-  > -->
   <view
-    class="nav-bar w-full fixed z-10 top-0 bg-primary h-28 px-2 pt-4 pb-2 space-y-4"
+    class="nav-bar w-full top-0 bg-primary px-3 pt-4 pb-4 flex flex-col space-y-4"
+    :style="{ paddingTop: safeAreaInsets?.top + 'px' }"
   >
     <view class="logo flex gap-0.5 items-center justify-between text-white">
       <view>
@@ -39,10 +34,10 @@ function changeLocale() {
       </view>
     </view>
     <view
-      class="search-bar overflow-hidden py-1 px-2 bg-white bg- h-8 rounded-full flex items-center gap-1 justify-around"
+      class="py-1 px-3 bg-gray-100 h-8 rounded-full flex items-center gap-1 justify-around mt-auto"
     >
       <view class="flex items-center h-full">
-        <!-- <v-icon name="fa-search" class="fill-primary text-sm" /> -->
+        <uni-icons type="search" size="18" class="!text-primary"></uni-icons>
         <view class="w-[1px] mx-1 h-1/2 bg-gray-300" />
       </view>
       <view
@@ -54,20 +49,8 @@ function changeLocale() {
         </text>
       </view>
       <view class="h-full flex items-center gap-1">
-        <uni-icons
-          type="scan"
-          size="18"
-          class="!text-primary text-sm"
-        ></uni-icons>
-        <view class="px-1">
-          <!-- <v-icon name="fa-camera" class="fill-primary text-sm" /> -->
-        </view>
-        <!-- <view
-          class="!bg-primary px-3 py-1 text-white text-xs rounded-full whitespace-nowrap"
-          @click="navigateToSearchPage"
-        >
-          搜索
-        </view> -->
+        <uni-icons type="scan" size="18" class="!text-primary"></uni-icons>
+        <!-- <uni-icons type="camera" size="20" class="!text-primary"></uni-icons> -->
       </view>
     </view>
   </view>
