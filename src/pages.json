@@ -36,8 +36,7 @@
     {
       "path": "pages/message/message",
       "style": {
-        "navigationBarTitleText": "消息列表",
-        "navigationBarBackgroundColor": "#3b3187"
+        "navigationStyle": "custom"
       }
     },
     {

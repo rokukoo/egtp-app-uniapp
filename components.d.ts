@@ -20,7 +20,6 @@ declare module '@vue/runtime-core' {
     NutIcon: typeof import('nutui-uniapp/components/icon/icon.vue')['default']
     NutInput: typeof import('nutui-uniapp/components/input/input.vue')['default']
     NutNavbar: typeof import('nutui-uniapp/components/navbar/navbar.vue')['default']
-    NutSearchbar: typeof import('nutui-uniapp/components/searchbar/searchbar.vue')['default']
     NutTabPane: typeof import('nutui-uniapp/components/tabpane/tabpane.vue')['default']
     NutTabs: typeof import('nutui-uniapp/components/tabs/tabs.vue')['default']
   }

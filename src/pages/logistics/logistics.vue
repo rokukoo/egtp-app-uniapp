@@ -14,7 +14,9 @@
     </view>
     <view class="mt-3 px-3">
       <!-- <nut-cell custom-class="flex-wrap gap-2 shadow"> -->
-      <view class="card bg-white shadow rounded h-full px-3 flex flex-col">
+      <view
+        class="card bg-white shadow rounded h-full px-3 flex flex-col text-sm"
+      >
         <view
           class="card-header py-2 flex items-center gap-2 border-b-[1px] border-b-gray-200"
         >
