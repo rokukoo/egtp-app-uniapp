@@ -14,7 +14,6 @@
 <script lang="ts" setup>
 import { reactive } from "vue";
 import MessagePanel from "./message-panel.vue";
-import NoticePanel from "./notice-panel.vue";
 
 // 获取屏幕边界到安全区域距离
 const { safeAreaInsets } = uni.getSystemInfoSync();

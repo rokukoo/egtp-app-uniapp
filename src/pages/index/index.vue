@@ -27,7 +27,6 @@ const bannerList = ref<BannerItem[]>([]);
 onLoad(() => {
   getHomeBannerData();
 });
-
 const state = reactive({
   tabValue: "0",
 });
@@ -40,43 +39,63 @@ const state = reactive({
     <!-- 顶部导航栏 -->
     <custom-nav-bar />
     <!-- 首页内容区 -->
-    <scroll-view scroll-y>
-      <view class="space-y-3">
-        <!-- Banner区域 -->
-        <view class="relative">
-          <!-- 模拟 blend 效果 -->
-          <view
-            class="absolute h-1/2 w-full bg-gradient-to-b from-primary to-pink-100"
-          />
-          <view class="px-3">
-            <egtp-swiper :list="bannerList" />
-          </view>
-        </view>
-        <!-- 菜单区域 -->
+    <!-- <scroll-view scroll-y> -->
+    <view class="space-y-3">
+      <!-- Banner区域 -->
+      <view class="relative">
+        <!-- 模拟 blend 效果 -->
+        <view
+          class="absolute h-1/2 w-full bg-gradient-to-b from-primary to-pink-100"
+        />
         <view class="px-3">
-          <menu-panel />
-        </view>
-        <!-- 功能交互区 -->
-        <view class="px-3 flex justify-between gap-2 h-40">
-          <time-zone-panel class="h-full flex-1" />
-          <exchange-rate-panel class="h-full flex-1" />
-        </view>
-        <!-- 商品推荐区 -->
-        <view class="px-3">
-          <nut-tabs v-model="state.tabValue">
-            <nut-tab-pane
-              title="热卖商品"
-              :custom-style="{ background: '#f6f6f6', padding: '10px 0' }"
-            >
-              <product-card />
-            </nut-tab-pane>
-            <nut-tab-pane title="推荐商家">
-              <egtp-store />
-            </nut-tab-pane>
-          </nut-tabs>
+          <egtp-swiper :list="bannerList" />
         </view>
       </view>
-    </scroll-view>
+      <!-- 菜单区域 -->
+      <view class="px-3">
+        <menu-panel />
+      </view>
+      <!-- 功能交互区 -->
+      <view class="px-3 flex justify-between gap-2 h-36">
+        <time-zone-panel class="h-full flex-1" />
+        <exchange-rate-panel class="h-full flex-1" />
+      </view>
+      <view class="px-3">
+        <egtp-swiper :list="bannerList" />
+      </view>
+      <view class="px-3 w-full justify-between flex gap-3">
+        <view class="h-full flex-1">
+          <egtp-swiper :list="bannerList" />
+        </view>
+        <view class="h-full flex-1">
+          <egtp-swiper :list="bannerList" />
+        </view>
+      </view>
+      <!-- 商品推荐区 -->
+      <view class="px-3">
+        <nut-tabs
+          v-model="state.tabValue"
+          :auto-height="true"
+          :animated-time="0"
+        >
+          <nut-tab-pane
+            title="热卖商品"
+            pane-key="0"
+            :custom-style="{ background: '#f6f6f6', padding: '10px 0' }"
+          >
+            <product-card />
+          </nut-tab-pane>
+          <nut-tab-pane
+            title="推荐商家"
+            pane-key="1"
+            :custom-style="{ background: '#f6f6f6', padding: '10px 0' }"
+          >
+            <egtp-store />
+          </nut-tab-pane>
+        </nut-tabs>
+      </view>
+    </view>
+    <!-- </scroll-view> -->
   </view>
 </template>
 

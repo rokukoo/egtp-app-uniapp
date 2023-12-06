@@ -1,6 +1,7 @@
 <template>
   <view
     class="message-item h-16 bg-white border-b-[1px] border-gray-200 flex items-center justify-between px-3 py-2 gap-2"
+    @click="gotoChat()"
   >
     <view class="avatar h-12 w-12 rounded-lg overflow-hidden">
       <view
@@ -27,6 +28,10 @@
 
 <script lang="ts" setup>
 const props = defineProps();
+
+function gotoChat() {
+  uni.navigateTo({ url: "/pages/message/chat/chat" });
+}
 </script>
 
 <style lang="scss" scoped></style>

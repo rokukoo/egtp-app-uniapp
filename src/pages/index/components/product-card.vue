@@ -1,4 +1,10 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+function gotoProductDetails(productId: number) {
+  uni.navigateTo({
+    url: `/pages/product/product-details?productId=${productId}`,
+  });
+}
+</script>
 
 <template>
   <view>
@@ -8,8 +14,9 @@
     <view class="flex flex-col gap-4">
       <view
         class="card bg-white shadow rounded h-28 flex gap-2 overflow-hidden"
-        v-for="(item, index) in 5"
+        v-for="(item, index) in 20"
         :key="index"
+        @click="gotoProductDetails(item)"
       >
         <view class="product-img h-28 w-28">
           <view
