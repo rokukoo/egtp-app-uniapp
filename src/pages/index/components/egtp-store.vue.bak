@@ -1,0 +1,50 @@
+<!-- <template>
+  <view class="egtp-store flex gap-3">
+    <view class="flex-1 space-y-2">
+      <view
+        v-for="item in 10"
+        :key="Math.random() * 10000000000000"
+        class="bg-white rounded-md shadow overflow-hidden"
+      >
+        <view class="h-32 bg-gradient-to-br from-primary to-purple-200" />
+        <view class="p-3 flex flex-col gap-1">
+          <view class="text-yellow-500 rounded-md text-sm">好评店铺</view>
+          <view>{{ Math.random() * 10000000000000 }}店铺</view>
+          <view class="flex items-center gap-1 text-gray-500 text-sm">
+            <nut-icon name="location2" size="8" />
+            <text>中国福建莆田</text>
+          </view>
+          <view class="text-gray-500 text-sm">3.3w+人看过, 已售2.1w+商品</view>
+        </view>
+      </view></view
+    >
+    <view class="flex-1 space-y-2">
+      <view
+        v-for="item in 10"
+        :key="Math.random() * 10000000000000"
+        class="bg-white rounded-md shadow overflow-hidden"
+      >
+        <view class="h-32 bg-gradient-to-br from-primary to-purple-200" />
+        <view class="p-3 flex flex-col gap-1">
+          <view class="text-yellow-500 rounded-md text-sm">好评店铺</view>
+          <view>{{ Math.random() * 10000000000000 }}店铺</view>
+          <view class="flex items-center gap-1 text-gray-500 text-sm">
+            <nut-icon name="location2" size="8" />
+            <text>中国金华义乌</text>
+          </view>
+          <view class="text-gray-500 text-sm">10.8w+人看过, 已售8.7w+商品</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+
+<script lang="ts" setup>
+import type { Store } from "@/types/store";
+
+const props = defineProps<{
+  stores: Array<Store>;
+}>();
+</script>
+
+<style lang="scss" scoped></style> -->

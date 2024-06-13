@@ -13,3 +13,5 @@ export default pinia;
 // 模块统一导出
 export * from "./modules/user";
 export * from "./modules/login";
+export * from "./modules/lang";
+export * from "./modules/search";

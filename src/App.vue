@@ -5,6 +5,7 @@ import { useI18n } from "vue-i18n";
 const { t } = useI18n();
 
 onLaunch(() => {
+  // 若当前页面为 TabBar 页面, 则设置 TabBar 文字为国际化内容
   uni.setTabBarItem({ index: 0, text: t("tabbar.index") });
   uni.setTabBarItem({ index: 1, text: t("tabbar.category") });
   uni.setTabBarItem({ index: 2, text: t("tabbar.logistics") });

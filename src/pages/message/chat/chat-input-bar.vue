@@ -1,6 +1,6 @@
 <template>
   <view
-    class="h-28 bg-gray-100 border-t-[1px] border-gray-200 flex flex-col gap-2 justify-end pb-10"
+    class="h-28 w-full bg-gray-100 border-t-[1px] border-gray-200 flex flex-col gap-2 justify-end pb-10 fixed bottom-0 left-0"
   >
     <!-- <view class="bubbles">
         <view>最近有空吗?</view>
@@ -11,8 +11,9 @@
       <view class="flex-1 h-10">
         <input
           v-model="message"
-          @input=""
+          @input="$emit('input', message)"
           class="h-full bg-white rounded-lg px-3"
+          @confirm="$emit('confirm', message)"
         />
       </view>
       <view class="h-full flex items-center gap-2">

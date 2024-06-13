@@ -1,6 +1,14 @@
-import { useUserStore } from "@/stores";
+import { useLoginStore, useUserStore } from "@/stores";
 
-const baseURL = "https://pcapi-xiaotuxian-front-devtest.itheima.net";
+export const Method = {
+  GET: "GET" as "GET",
+  POST: "POST" as "POST",
+  PUT: "PUT" as "PUT",
+  DELETE: "DELETE" as "DELETE",
+};
+
+// const baseURL = "https://pcapi-xiaotuxian-front-devtest.itheima.net";
+export const baseURL = "http://localhost:8080/api/v1";
 
 // 创建拦截器
 const httpInterceptor = {
@@ -22,7 +30,7 @@ const httpInterceptor = {
     const userStore = useUserStore();
     const token = userStore.profile?.token;
     if (token) {
-      options.header.Authorization = token;
+      options.header.Authorization = `Bearer ${token}`;
     }
   },
 };
@@ -45,11 +53,21 @@ uni.addInterceptor("uploadFile", httpInterceptor);
  *    3.2 其他错误 -> 根据后端错误信息轻提示
  *    3.3 网络错误 -> 提示用户换网络
  */
-type Result<T> = {
-  code: string;
-  message: string;
-  result: T;
+export type SimpleResult<T> = {
+  code: number;
+  msg: string;
+  data: T;
+  total?: string;
 };
+
+export type PageResult<T> = {
+  code: number;
+  msg: string;
+  rows: T;
+  total?: string;
+};
+
+type Result<T> = SimpleResult<T> & PageResult<T>;
 
 // 2.2 添加类型，支持泛型
 export const http = <T>(options: UniApp.RequestOptions) => {
@@ -59,6 +77,8 @@ export const http = <T>(options: UniApp.RequestOptions) => {
       ...options,
       // 响应成功
       success(res) {
+        // @ts-ignore
+        res.statusCode = res.data.code;
         // 状态码 2xx，参考 axios 的设计
         if (res.statusCode >= 200 && res.statusCode < 300) {
           // 2.1 提取核心数据 res.data
@@ -67,13 +87,15 @@ export const http = <T>(options: UniApp.RequestOptions) => {
           // 401错误  -> 清理用户信息，跳转到登录页
           const userStore = useUserStore();
           userStore.clearProfile();
-          uni.navigateTo({ url: "/pages/login/login" });
+          const loginStore = useLoginStore();
+          loginStore.setLogined(false);
+          uni.switchTab({ url: "/pages/info/info" });
           reject(res);
         } else {
           // 其他错误 -> 根据后端错误信息轻提示
           uni.showToast({
             icon: "none",
-            title: (res.data as Result<T>).message || "请求错误",
+            title: (res.data as Result<T>).msg || "请求错误",
           });
           reject(res);
         }

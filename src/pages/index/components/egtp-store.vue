@@ -1,46 +1,47 @@
 <template>
-  <view class="egtp-store flex gap-3">
-    <view class="flex-1 space-y-2">
-      <view
-        v-for="item in 10"
-        :key="Math.random() * 10000000000000"
-        class="bg-white rounded-md shadow overflow-hidden"
-      >
-        <view class="h-32 bg-gradient-to-br from-primary to-purple-200" />
-        <view class="p-3 flex flex-col gap-1">
-          <view class="text-yellow-500 rounded-md text-sm">好评店铺</view>
-          <view>{{ Math.random() * 10000000000000 }}店铺</view>
-          <view class="flex items-center gap-1 text-gray-500 text-sm">
-            <nut-icon name="location2" size="8" />
-            <text>中国福建莆田</text>
-          </view>
-          <view class="text-gray-500 text-sm">3.3w+人看过, 已售2.1w+商品</view>
-        </view>
-      </view></view
-    >
-    <view class="flex-1 space-y-2">
-      <view
-        v-for="item in 10"
-        :key="Math.random() * 10000000000000"
-        class="bg-white rounded-md shadow overflow-hidden"
-      >
-        <view class="h-32 bg-gradient-to-br from-primary to-purple-200" />
-        <view class="p-3 flex flex-col gap-1">
-          <view class="text-yellow-500 rounded-md text-sm">好评店铺</view>
-          <view>{{ Math.random() * 10000000000000 }}店铺</view>
-          <view class="flex items-center gap-1 text-gray-500 text-sm">
-            <nut-icon name="location2" size="8" />
-            <text>中国金华义乌</text>
-          </view>
-          <view class="text-gray-500 text-sm">10.8w+人看过, 已售8.7w+商品</view>
-        </view>
-      </view>
-    </view>
-  </view>
+  <div class="egtp-store" v-for="store in stores" :key="store.id">
+    <div class="egtp-store-item bg-white rounded-md shadow-sm py-4 px-2">
+      <div class="top flex items-center justify-between h-14">
+        <div class="left h-full flex flex-col justify-between">
+          <div class="name font-bold text-lg">
+            {{ store.name }}
+          </div>
+          <div class="desc text-sm text-gray-400">
+            {{ store.description }}
+          </div>
+        </div>
+        <div class="right h-full flex flex-col items-end justify-between">
+          <div class="go-shop-button">
+            <nut-button
+              type="primary"
+              size="small"
+              @click="navigateToStore(store.id!!)"
+              >进店</nut-button
+            >
+          </div>
+          <div class="area text-gray-400 text-sm">
+            {{ store.country ?? "暂无" }} · {{ store.area ?? "暂无" }}
+            &gt;
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script lang="ts" setup>
-const props = defineProps();
+import type { Store } from "@/types/store";
+
+const props = defineProps<{
+  stores: Store[];
+}>();
+
+function navigateToStore(store_id: number) {
+  console.log(store_id);
+  uni.navigateTo({
+    url: `/pages/store/store?store_id=${store_id}`,
+  });
+}
 </script>
 
 <style lang="scss" scoped></style>

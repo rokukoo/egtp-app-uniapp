@@ -3,31 +3,78 @@ import { ref, reactive } from "vue";
 // 获取屏幕边界到安全区域距离
 const { safeAreaInsets } = uni.getSystemInfoSync();
 
-import { getHomeBannerApi } from "@/services/home";
-import { onLoad } from "@dcloudio/uni-app";
-import type { BannerItem } from "@/types/home";
+import { getCodeImgApi } from "@/services/login";
 
-const agreement = ref(false);
+const loginData = reactive({
+  username: "",
+  password: "",
+  agreement: false,
+  code: "",
+  uuid: "",
+});
 
-const getHomeBannerData = async () => {
-  const res = await getHomeBannerApi();
-  console.log(res);
-  bannerList.value = res.result;
+const codeImgUrl = ref("");
+
+const getCodeData = async () => {
+  getCodeImgApi()
+    .then(({ data }) => {
+      console.log(data);
+      codeImgUrl.value = data.img;
+      loginData.uuid = data.uuid;
+    })
+    .catch(() => {
+      setTimeout(getCodeData, 500);
+      isSubmitting.value = false;
+    });
+  isSubmitting.value = false;
 };
 
-const bannerList = ref<BannerItem[]>([]);
-
 onLoad(() => {
-  getHomeBannerData();
+  getCodeData();
 });
 
-const basicData = reactive({
-  account: "",
-  password: "",
-});
+// const { account, password };
 
 import { useLoginStore } from "@/stores";
+import { onLoad } from "@dcloudio/uni-app";
 const loginStore = useLoginStore();
+const isSubmitting = ref(false);
+
+const submit = async () => {
+  if (!loginData.agreement) {
+    uni.showToast({
+      title: "请先阅读并同意协议",
+      icon: "none",
+    });
+    return;
+  }
+  isSubmitting.value = true;
+  // 模拟登录, 制造延迟
+  setTimeout(async () => {
+    loginStore
+      .login(
+        loginData.username,
+        loginData.password,
+        loginData.code,
+        loginData.uuid
+      )
+      .then((res) => {
+        if (!res.success) {
+          getCodeData();
+        } else {
+          uni.showToast({
+            title: "登录成功",
+            icon: "success",
+          });
+        }
+        isSubmitting.value = false;
+      })
+      .catch(() => {
+        getCodeData();
+        isSubmitting.value = false;
+      });
+  }, 500);
+};
 </script>
 
 <template>
@@ -56,7 +103,7 @@ const loginStore = useLoginStore();
             <!-- TODO: 添加图标 -->
             <!-- <template #label>slot label</template> -->
             <nut-input
-              v-model="basicData.account"
+              v-model="loginData.username"
               class="nut-input-text"
               placeholder="账号/手机/邮箱"
               type="text"
@@ -65,16 +112,33 @@ const loginStore = useLoginStore();
           </nut-form-item>
           <nut-form-item label="密码" :required="true">
             <nut-input
-              v-model="basicData.password"
+              v-model="loginData.password"
               class="nut-input-text"
               placeholder="请输入密码"
               type="password"
               custom-class="text-black"
             />
           </nut-form-item>
+          <nut-form-item label="验证码" :required="true">
+            <view class="flex items-center justify-between gap-2 h-8">
+              <nut-input
+                v-model="loginData.code"
+                class="nut-input-text"
+                placeholder="请输入验证码"
+                type="text"
+                custom-class="text-black"
+              />
+              <image
+                class="h-full w-full"
+                :src="codeImgUrl"
+                mode="aspectFit"
+                @click="getCodeData"
+              />
+            </view>
+          </nut-form-item>
           <view :style="{ padding: 'var(--nut-cell-padding, 12rpx 32rpx)' }">
             <nut-checkbox
-              v-model="agreement"
+              v-model="loginData.agreement"
               label="复选框"
               custom-style="align-items: start"
             >
@@ -90,9 +154,11 @@ const loginStore = useLoginStore();
             <nut-button
               custom-style="width: 100%"
               type="primary"
-              @click="loginStore.login('', '')"
+              @click="submit"
+              :loading="isSubmitting"
             >
-              立即登录
+              <text v-if="isSubmitting">登录中</text>
+              <text v-else>立即登录</text>
             </nut-button>
           </view>
         </nut-form>
@@ -112,8 +178,9 @@ const loginStore = useLoginStore();
           >
         </view>
       </view>
-      <view>
-        <egtp-swiper :list="bannerList" />
+      <view class="h-40">
+        <!-- <egtp-banner type="login-1" /> -->
+        <egtp-banner type="index-1" />
       </view>
     </view>
   </view>

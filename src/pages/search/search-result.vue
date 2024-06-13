@@ -5,7 +5,11 @@
   >
     <search-nav-bar v-model:keyWord="keyWord" />
     <view class="px-3">
-      <nut-tabs v-model="state.tabValue" :animated-time="0">
+      <nut-tabs
+        v-model="state.tabValue"
+        :animated-time="0"
+        @change="handleTabChange"
+      >
         <nut-tab-pane
           title="商品"
           pane-key="1"
@@ -19,21 +23,21 @@
               :options="state2.options2"
             />
           </nut-menu>
-          <product-card />
+          <egtp-product-list :list="products" />
         </nut-tab-pane>
         <nut-tab-pane
           title="商家"
           pane-key="2"
           :custom-style="{ background: '#f6f6f6', padding: '10px 0' }"
         >
-          <egtp-store />
+          <egtp-store-list :list="stores" />
         </nut-tab-pane>
         <nut-tab-pane
           title="物流"
           pane-key="3"
           :custom-style="{ background: '#f6f6f6', padding: '10px 0' }"
         >
-          <hot-logistics />
+          <egtp-logistics-list :list="logistics" />
         </nut-tab-pane>
       </nut-tabs>
     </view>
@@ -44,9 +48,17 @@
 import { onLoad } from "@dcloudio/uni-app";
 import SearchNavBar from "./search-nav-bar.vue";
 import { ref, reactive } from "vue";
-import ProductCard from "../index/components/product-card.vue";
+import ProductCard from "../index/components/product-list.vue";
 import EgtpStore from "../index/components/egtp-store.vue";
 import HotLogistics from "../logistics/hot-logistics.vue";
+import { getProductListApi } from "@/services/product";
+import { getStoreListApi } from "@/services/store";
+import type { Store } from "@/types/store";
+import type { Product } from "@/types/product";
+
+const products = ref<Product[]>([]);
+const stores = ref<Store[]>([]);
+const logistics = ref<Store[]>([]);
 
 const state = reactive({
   tabValue: "1",
@@ -58,14 +70,6 @@ const { safeAreaInsets } = uni.getSystemInfoSync();
 const props = defineProps();
 
 const keyWord = ref("");
-
-console.log(keyWord.value);
-
-onLoad((options) => {
-  console.log(options);
-  keyWord.value = options!!.keyWord;
-  console.log(keyWord.value);
-});
 
 const state2 = reactive({
   options1: [
@@ -81,6 +85,33 @@ const state2 = reactive({
   value1: 0,
   value2: "a",
 });
+
+const getProductData = async () => {
+  const res = await getProductListApi({ name: keyWord.value });
+  products.value = res.rows;
+};
+
+onLoad((options) => {
+  keyWord.value = options!!.keyWord;
+  console.log(`User search: ${keyWord.value}`);
+  getProductData();
+});
+
+const getStoreData = async () => {
+  const res = await getStoreListApi({ name: keyWord.value });
+  console.log(res);
+  stores.value = res.rows;
+};
+
+const handleTabChange = (options: any) => {
+  if (options.paneKey == "1") {
+    getProductData();
+  } else if (options.paneKey == "2") {
+    getStoreData();
+  } else if (options.paneKey == "3") {
+    // getLogisticsData();
+  }
+};
 
 const handleChange = (val: any) => {
   console.log("val", val);

@@ -33,6 +33,7 @@ const { safeAreaInsets } = uni.getSystemInfoSync();
         <font-awesome-icon @click="changeLocale" :icon="['fas', 'cog']" />
       </view>
     </view>
+    <!-- search bar -->
     <view
       class="py-1 px-3 bg-gray-100 h-8 rounded-full flex items-center gap-1 justify-around mt-auto"
     >

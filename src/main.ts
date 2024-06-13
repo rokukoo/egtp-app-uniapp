@@ -3,6 +3,7 @@ import App from "./App.vue";
 import pinia from "./stores";
 import i18n from "./locale";
 import "./styles/style.css";
+import "./styles/nut.css";
 import "./styles/tailwind.css";
 import "./scss/uni-ui.reset.scss";
 

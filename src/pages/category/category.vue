@@ -1,22 +1,22 @@
 <script setup lang="ts">
-import { getHomeBannerApi } from "@/services/home";
-import type { BannerItem } from "@/types/home";
+// import { getHomeBannerApi } from "@/services/home";
+// import type { BannerItem } from "@/types/home";
 import { ref } from "vue";
 import { onLoad } from "@dcloudio/uni-app";
 
 const searchText = ref<string>("");
 
-const getHomeBannerData = async () => {
-  const res = await getHomeBannerApi(2);
-  console.log(res);
-  bannerList.value = res.result;
-};
+// const getHomeBannerData = async () => {
+//   const res = await getHomeBannerApi(2);
+//   console.log(res);
+//   bannerList.value = res.result;
+// };
 
-const bannerList = ref<BannerItem[]>([]);
+// const bannerList = ref<BannerItem[]>([]);
 
-onLoad(() => {
-  getHomeBannerData();
-});
+// onLoad(() => {
+//   getHomeBannerData();
+// });
 </script>
 
 <template>
@@ -46,7 +46,7 @@ onLoad(() => {
       <!-- 右侧：二级分类 -->
       <scroll-view class="secondary" scroll-y>
         <!-- 焦点图 -->
-        <egtp-swiper class="banner" :list="bannerList" />
+        <!-- <egtp-swiper class="banner" :list="bannerList" /> -->
         <!-- 内容区域 -->
         <view class="panel" v-for="item in 3" :key="item">
           <view class="title">
@@ -218,3 +218,4 @@ page {
   }
 }
 </style>
+@/services/banner

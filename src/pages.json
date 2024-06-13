@@ -1,124 +1,185 @@
 {
-	"easycom": {
-		"autoscan": true,
-		"custom": {
-			// uni-ui 规则如下配置
-			"^uni-(.*)": "@dcloudio/uni-ui/lib/uni-$1/uni-$1.vue",
-			// 以 egtp 开头的组件，在 components 目录中查找
-			"^egtp-(.*)": "@/components/egtp-$1.vue",
-			// unt-ui
-			"^nut-(.*)?-(.*)": "nutui-uniapp/components/$1$2/$1$2.vue",
-			"^nut-(.*)": "nutui-uniapp/components/$1/$1.vue"
-		}
-	},
-	"pages": [
-		//pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
-		{
-			"path": "pages/index/index",
-			"style": {
-				"navigationStyle": "custom"
-			}
-		},
-		{
-			"path": "pages/category/category",
-			"style": {
-				"navigationBarTitleText": "商品目录",
-				"navigationBarBackgroundColor": "#3b3187"
-			}
-		},
-		{
-			"path": "pages/logistics/logistics",
-			"style": {
-				"navigationBarTitleText": "物流查询",
-				"navigationBarBackgroundColor": "#3b3187"
-			}
-		},
-		{
-			"path": "pages/message/message",
-			"style": {
-				"navigationStyle": "custom"
-			}
-		},
-		{
-			"path": "pages/info/info",
-			"style": {
-				"navigationStyle": "custom"
-			}
-		},
-		{
-			"path": "pages/search/search",
-			"style": {
-				"navigationStyle": "custom"
-			}
-		},
-		{
-			"path": "pages/message/chat/chat",
-			"style": {
-				"navigationStyle": "custom"
-			}
-		},
-		{
-			"path": "pages/product/product",
-			"style": {
-				"navigationBarTitleText": "product"
-			}
-		},
-		{
-			"path": "pages/search/search-result",
-			"style": {
-				"navigationStyle": "custom"
-			}
-		},
-		{
-			"path": "pages/product/product-details",
-			"style": {
-				"navigationBarTitleText": "product-details"
-			}
-		}
-	],
-	"globalStyle": {
-		// "navigationStyle": "custom",
-		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8"
-	},
-	"tabBar": {
-		"color": "#999999",
-		"selectedColor": "#3b3187",
-		"borderStyle": "black",
-		"backgroundColor": "#FFFFFF",
-		"iconWidth": "24px",
-		"height": "56px",
-		"list": [
-			{
-				"pagePath": "pages/index/index",
-				"text": "首页",
-				"iconPath": "./static/tabbar/index.png",
-				"selectedIconPath": "./static/tabbar/index_selected.png"
-			},
-			{
-				"pagePath": "pages/category/category",
-				"text": "目录",
-				"iconPath": "./static/tabbar/category.png",
-				"selectedIconPath": "./static/tabbar/category_selected.png"
-			},
-			{
-				"pagePath": "pages/logistics/logistics",
-				"text": "物流",
-				"iconPath": "./static/tabbar/logistics.png",
-				"selectedIconPath": "./static/tabbar/logistics_selected.png"
-			},
-			{
-				"pagePath": "pages/message/message",
-				"text": "消息",
-				"iconPath": "./static/tabbar/message.png",
-				"selectedIconPath": "./static/tabbar/message_selected.png"
-			},
-			{
-				"pagePath": "pages/info/info",
-				"text": "个人中心",
-				"iconPath": "./static/tabbar/info.png",
-				"selectedIconPath": "./static/tabbar/info_selected.png"
-			}
-		]
-	}
+  "easycom": {
+    "autoscan": true,
+    "custom": {
+      // uni-ui 规则如下配置
+      "^uni-(.*)": "@dcloudio/uni-ui/lib/uni-$1/uni-$1.vue",
+      // 以 egtp 开头的组件，在 components 目录中查找
+      "^egtp-(.*)": "@/components/egtp-$1.vue",
+      // unt-ui
+      "^nut-(.*)?-(.*)": "nutui-uniapp/components/$1$2/$1$2.vue",
+      "^nut-(.*)": "nutui-uniapp/components/$1/$1.vue"
+    }
+  },
+  "pages": [
+    //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+    {
+      "path": "pages/index/index",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/category/category",
+      "style": {
+        "navigationBarTitleText": "商品目录",
+        "navigationBarBackgroundColor": "#3b3187"
+      }
+    },
+    {
+      "path": "pages/logistics/logistics",
+      "style": {
+        "navigationBarTitleText": "物流查询",
+        "navigationBarBackgroundColor": "#3b3187"
+      }
+    },
+    {
+      "path": "pages/message/message",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/info/info",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/search/search",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/message/chat/chat",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/product/product",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/search/search-result",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/product/product-details",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/store/store",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/logistics/details/details",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/exhibition/exhibition",
+      "style": {
+        "navigationBarTitleText": "展会信息",
+        "navigationBarBackgroundColor": "#3b3187"
+      }
+    },
+    {
+      "path": "pages/exhibition/exhibition-details",
+      "style": {
+        "navigationBarTitleText": "展会详情",
+        "navigationBarBackgroundColor": "#3b3187"
+      }
+    },
+    {
+      "path": "pages/news/news",
+      "style": {
+        "navigationBarTitleText": "新闻信息",
+        "navigationBarBackgroundColor": "#3b3187"
+      }
+    },
+    {
+      "path": "pages/request/request",
+      "style": {
+        "navigationBarTitleText": "需求详情",
+        "navigationBarBackgroundColor": "#3b3187"
+      }
+    },
+    {
+      "path": "pages/news/news-details",
+      "style": {
+        "navigationBarTitleText": "新闻详情",
+        "navigationBarBackgroundColor": "#3b3187"
+      }
+    },
+    {
+      "path": "pages/logistics/search/logistics-search",
+      "style": {
+        "navigationBarTitleText": "物流搜索结果",
+        "navigationBarBackgroundColor": "#3b3187"
+      }
+    },
+    {
+      "path": "pages/request/new-request",
+      "style": {
+        "navigationBarTitleText": "发布需求",
+        "navigationBarBackgroundColor": "#3b3187"
+      }
+    }
+  ],
+  "globalStyle": {
+    // "navigationStyle": "custom",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#3b3187",
+    "borderStyle": "black",
+    "backgroundColor": "#FFFFFF",
+    "iconWidth": "24px",
+    "height": "56px",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "./static/tabbar/index.png",
+        "selectedIconPath": "./static/tabbar/index_selected.png"
+      },
+      {
+        "pagePath": "pages/category/category",
+        "text": "目录",
+        "iconPath": "./static/tabbar/category.png",
+        "selectedIconPath": "./static/tabbar/category_selected.png"
+      },
+      {
+        "pagePath": "pages/logistics/logistics",
+        "text": "物流",
+        "iconPath": "./static/tabbar/logistics.png",
+        "selectedIconPath": "./static/tabbar/logistics_selected.png"
+      },
+      {
+        "pagePath": "pages/message/message",
+        "text": "消息",
+        "iconPath": "./static/tabbar/message.png",
+        "selectedIconPath": "./static/tabbar/message_selected.png"
+      },
+      {
+        "pagePath": "pages/info/info",
+        "text": "个人中心",
+        "iconPath": "./static/tabbar/info.png",
+        "selectedIconPath": "./static/tabbar/info_selected.png"
+      }
+    ]
+  }
 }

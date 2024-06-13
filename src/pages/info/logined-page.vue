@@ -1,29 +1,33 @@
 <script lang="ts" setup>
-// 获取屏幕边界到安全区域距离
-const { safeAreaInsets } = uni.getSystemInfoSync();
-
-import { getHomeBannerApi } from "@/services/home";
-import type { BannerItem } from "@/types/home";
 import { ref } from "vue";
 import { onLoad } from "@dcloudio/uni-app";
 
-const getHomeBannerData = async () => {
-  const res = await getHomeBannerApi(2);
-  console.log(res);
-  bannerList.value = res.result;
-};
-
-const bannerList = ref<BannerItem[]>([]);
-
-onLoad(() => {
-  getHomeBannerData();
-});
+// 获取屏幕边界到安全区域距离
+const { safeAreaInsets } = uni.getSystemInfoSync();
 
 const props = defineProps();
 
 import { useLoginStore } from "@/stores";
 
+const isLogoutSubmitting = ref(false);
+const isChangeAccountSubmiting = ref(false);
 const loginStore = useLoginStore();
+
+const logout = () => {
+  isLogoutSubmitting.value = true;
+  setTimeout(async () => {
+    await loginStore.logout();
+    isLogoutSubmitting.value = false;
+  }, 500);
+};
+
+const changeAccount = () => {
+  isChangeAccountSubmiting.value = true;
+  setTimeout(async () => {
+    await loginStore.logout();
+    isChangeAccountSubmiting.value = false;
+  }, 500);
+};
 </script>
 
 <template>
@@ -56,8 +60,9 @@ const loginStore = useLoginStore();
       </nut-grid>
     </view>
 
-    <view class="mx-3 rounded-md overflow-hidden">
-      <egtp-swiper class="banner" :list="bannerList" />
+    <view class="mx-3 rounded-md overflow-hidden h-40">
+      <!-- <egtp-banner type="login-1" /> -->
+      <egtp-banner type="index-1" />
     </view>
 
     <view class="mx-3">
@@ -84,10 +89,22 @@ const loginStore = useLoginStore();
     </view>
 
     <view class="mx-3 space-y-2">
-      <nut-button block type="primary" @click="loginStore.logout">
-        退出登录
+      <nut-button
+        block
+        type="primary"
+        @click="logout"
+        :loading="isLogoutSubmitting"
+      >
+        <text v-if="isLogoutSubmitting">退出中..</text>
+        <text v-else>退出登录</text>
       </nut-button>
-      <nut-button block> 切换账号 </nut-button>
+      <nut-button
+        block
+        @click="changeAccount"
+        :loading="isChangeAccountSubmiting"
+      >
+        切换账号
+      </nut-button>
     </view>
   </view>
 </template>

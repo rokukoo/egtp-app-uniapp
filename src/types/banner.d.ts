@@ -1,11 +1,12 @@
 /** 首页-广告区域数据类型 */
 export type BannerItem = {
   /** 跳转链接 */
-  hrefUrl: string;
+  hrefUrl?: string;
   /** id */
-  id: string;
+  id?: string;
   /** 图片链接 */
-  imgUrl: string;
+  coverImage?: string;
   /** 跳转类型 */
-  type: number;
+  type?: string;
+  langId?: number;
 };

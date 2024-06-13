@@ -15,25 +15,29 @@
           confirm-type="search"
           input-mode="search"
           placeholder="搜索商品/商家/物流.."
-          @confirm="search"
+          @confirm="doSearch"
         />
         <nut-icon name="photograph" />
       </view>
     </view>
     <view class="search-bar-button">
-      <view @click="search">搜索</view>
+      <view @click="doSearch">搜索</view>
     </view>
   </view>
 </template>
 
 <script lang="ts" setup>
+import { useSearchStore } from "@/stores";
 import { ref, defineEmits } from "vue";
+
+const { search, clearHistory } = useSearchStore();
 
 const props = defineProps();
 
 const value = ref("");
 
-function search() {
+function doSearch() {
+  search(value.value);
   uni.navigateTo({
     url: `/pages/search/search-result?keyWord=${value.value}`,
   });

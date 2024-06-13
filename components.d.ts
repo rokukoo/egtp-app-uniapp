@@ -9,7 +9,11 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    EgtpBanner: typeof import('./src/components/egtp-banner.vue')['default']
     EgtpCard: typeof import('./src/components/egtp-card.vue')['default']
+    EgtpLogisticsList: typeof import('./src/components/egtp-logistics-list.vue')['default']
+    EgtpProductList: typeof import('./src/components/egtp-product-list.vue')['default']
+    EgtpStoreList: typeof import('./src/components/egtp-store-list.vue')['default']
     EgtpSwiper: typeof import('./src/components/egtp-swiper.vue')['default']
     NutButton: typeof import('nutui-uniapp/components/button/button.vue')['default']
     NutCell: typeof import('nutui-uniapp/components/cell/cell.vue')['default']
@@ -24,7 +28,14 @@ declare module '@vue/runtime-core' {
     NutInput: typeof import('nutui-uniapp/components/input/input.vue')['default']
     NutMenu: typeof import('nutui-uniapp/components/menu/menu.vue')['default']
     NutMenuItem: typeof import('nutui-uniapp/components/menuitem/menuitem.vue')['default']
+    NutRange: typeof import('nutui-uniapp/components/range/range.vue')['default']
+    NutSearchbar: typeof import('nutui-uniapp/components/searchbar/searchbar.vue')['default']
+    NutSwiper: typeof import('nutui-uniapp/components/swiper/swiper.vue')['default']
+    NutSwiperItem: typeof import('nutui-uniapp/components/swiperitem/swiperitem.vue')['default']
     NutTabPane: typeof import('nutui-uniapp/components/tabpane/tabpane.vue')['default']
     NutTabs: typeof import('nutui-uniapp/components/tabs/tabs.vue')['default']
+    NutTag: typeof import('nutui-uniapp/components/tag/tag.vue')['default']
+    NutTextarea: typeof import('nutui-uniapp/components/textarea/textarea.vue')['default']
+    NutUploader: typeof import('nutui-uniapp/components/uploader/uploader.vue')['default']
   }
 }

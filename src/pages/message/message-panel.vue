@@ -13,15 +13,19 @@
     </view>
     <scroll-view scroll-y>
       <view class="flex flex-col rounded-lg overflow-hidden">
-        <message-item v-for="item in 10" />
+        <chat-item v-for="chat in chats" :key="chat.id" :chat="chat" />
       </view>
     </scroll-view>
   </view>
 </template>
 
 <script lang="ts" setup>
-import MessageItem from "./message-item.vue";
-const props = defineProps();
+import type { Chat } from "@/types";
+import ChatItem from "./chat-item.vue";
+
+const props = defineProps<{
+  chats: Chat[];
+}>();
 </script>
 
 <style lang="scss" scoped></style>
